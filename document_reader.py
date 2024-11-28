@@ -1,7 +1,7 @@
 import os
 from PyPDF2 import PdfReader
 from markdown import markdown
-from docx import Document
+#from docx import Document
 
 class DocumentReader:
     """A class to read various document types."""
@@ -24,8 +24,8 @@ class DocumentReader:
             return self._read_md()
         elif file_type == ".txt":
             return self._read_txt()
-        elif file_type == ".docx":
-            return self._read_docx()
+        #elif file_type == ".docx":
+        #    return self._read_docx()
         else:
             print(f"\tUnsupported file type: {file_type}, file {self.file_path} skipped.")
             return None
@@ -61,9 +61,9 @@ class DocumentReader:
         except Exception as e:
             print(f"Error reading text file: {e}")
         return text
-
+"""
     def _read_docx(self):
-        """Read a DOCX file and return its text."""
+        #Read a DOCX file and return its text.
         text = ""
         try:
             document = Document(self.file_path)
@@ -72,3 +72,4 @@ class DocumentReader:
         except Exception as e:
             print(f"Error reading DOCX file: {e}")
         return text
+"""
