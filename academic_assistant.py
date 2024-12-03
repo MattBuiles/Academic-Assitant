@@ -10,8 +10,8 @@ class AcademicAssistant:
         load_dotenv(os.path.join(self.base_path, ".env"))
 
         self.HF_API_KEY = os.getenv("HF_API_KEY")
-        self.MODEL = _____
-        self.client = _____
+        self.MODEL = "Qwen/QwQ-32B-Preview"
+        self.client = InferenceClient(api_key=self.HF_API_KEY)
 
         self.notes = self.initialize_collection("notes")
         self.examples = self.initialize_collection("examples")
@@ -43,7 +43,7 @@ class AcademicAssistant:
 
     def get_notes(self, query):
         response = self.notes.query(query)
-        retrieved_notes = _____
+        retrieved_notes = "\n".join(response["documents"][0])
         self.logger.info(f"Notas recuperadas: {retrieved_notes}")
         return retrieved_notes
 
@@ -59,28 +59,34 @@ class AcademicAssistant:
         self.logger.info(f"Plantilla leída: {template_name}")
         return template
 
-    def select_prompt_template(self, prompt_selection):
+    def select_prompt_template(self, prompt_selection="test_resolver"):
 
-        if prompt_selection == "repaso":
+        if prompt_selection == "summary":
             return self.read_template("summary")
-        else:
+        elif prompt_selection == "test_preparation":
             return self.read_template("test_preparation")
+        else:
+            return self.read_template("test_resolver")
 
-    def _____(self, _____, _____):
+    def generate_response(self, user_input, prompt_template):
         self.logger.info(f"Entrada del usuario: {user_input}")
         retrieved_notes = self.get_notes(user_input)
         retrieved_examples = self.get_examples(user_input)
-        _____ = self.client._____(
-            _____=self.MODEL, 
-            _____=[
-                {"role": "_____", "content": _____
+        response = self.client.chat_completion(
+            model=self.MODEL, 
+            messages=[
+                {"role": "system", "content": prompt_template.format(
+                    retrieved_notes=retrieved_notes, 
+                    retrieved_examples=retrieved_examples,
+                    user_input=user_input
+                )
                 }, 
-                {"role": "_____", "content": user_input}
+                {"role": "user", "content": user_input}
             ], 
-            temperature=_____,
-            max_tokens=_____
+            temperature=0.0,
+            max_tokens=1800
         )
-        response_content =_____
+        response_content =response["choices"][0]["message"]["content"]
         self.logger.info(f"Respuesta generada: {response_content}")
         return response_content
 
@@ -93,7 +99,7 @@ class AcademicAssistant:
                 while True:
                     user_input = input("Introduce tu pregunta: ")
                     print("Procesando...")
-                    response_content = self._____(user_input, prompt_template)
+                    response_content = self.generate_response(user_input, prompt_template)
                     print(f"Aquí está la respuesta: \n{response_content}")
             except KeyboardInterrupt:
                 self.logger.info("Programa terminado por el usuario.")

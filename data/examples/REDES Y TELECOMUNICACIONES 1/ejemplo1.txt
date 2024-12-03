@@ -1,0 +1,25 @@
+Contexto:
+Las redes y telecomunicaciones son sistemas que permiten la interconexión de dispositivos para compartir información. Pueden clasificarse según su alcance, como redes de área local (LAN), redes de área amplia (WAN) y redes de área personal (PAN). Además, utilizan protocolos como TCP/IP para garantizar la comunicación eficiente entre dispositivos.
+
+Pregunta:
+¿Cuáles son las principales diferencias entre las redes LAN y WAN?
+
+Respuesta:
+Las principales diferencias entre redes LAN y WAN son:
+
+Alcance:
+
+LAN: Redes de área local, generalmente limitadas a un edificio o campus.
+WAN: Redes de área amplia que conectan ubicaciones geográficamente dispersas.
+Velocidad y Latencia:
+
+LAN: Ofrecen velocidades más altas y menor latencia debido a su alcance limitado.
+WAN: Las velocidades pueden ser más bajas y la latencia mayor debido a la distancia y el uso de enlaces públicos.
+Costo:
+
+LAN: Generalmente más económicas de implementar y mantener.
+WAN: Requieren infraestructura costosa y a menudo dependen de servicios de terceros (como proveedores de internet).
+Casos de Uso:
+
+LAN: Ideales para redes domésticas o empresariales pequeñas, como oficinas.
+WAN: Utilizadas para conectar oficinas corporativas, sucursales y servicios globales.

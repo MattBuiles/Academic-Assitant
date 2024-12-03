@@ -7,6 +7,7 @@ import re
 from typeguard import typechecked
 from document_reader import DocumentReader
 import logging
+import nltk
 from nltk.corpus import stopwords
 import unicodedata
 
@@ -188,13 +189,13 @@ if __name__ == "__main__":
     notes = Collection("notes")
     examples = Collection("examples")
 
-    notes.ingest(folder_path="data/notes")
-    examples.ingest(folder_path="data/examples", split_files=False)
+    #notes.ingest(folder_path="data/notes")
+    #examples.ingest(folder_path="data/examples", split_files=False)
 
     #query = "¿Cómo normalizar una tabla en cuarta forma normal?"
     #print("\nQuery:", query)
     #print("Notes:")
-    #pprint(notes._____(query))
+    #pprint(notes.query(query))
     #print("-"*140)
     #print("Examples:")
     #pprint(examples.query(query, 1))
