@@ -17,3 +17,12 @@ python -m venv .venv
 .venv\Scripts\activate
 setup
 ```
+
+# Para ejecutar
+```bash
+streamlit run streamlit_app.py
+```
+# Para cargar 
+```bash
+python ./chroma_collection.py  
+```

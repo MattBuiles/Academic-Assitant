@@ -189,7 +189,7 @@ if __name__ == "__main__":
     notes = Collection("notes")
     examples = Collection("examples")
 
-    #notes.ingest(folder_path="data/notes")
+    notes.ingest(folder_path="data/notes")
     #examples.ingest(folder_path="data/examples", split_files=False)
 
     #query = "¿Cómo normalizar una tabla en cuarta forma normal?"

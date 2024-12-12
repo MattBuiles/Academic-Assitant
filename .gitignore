@@ -5,6 +5,9 @@
 __pycache__
 chroma
 
+data/notes
+
+
 .DS_Store
 
 # Byte-compiled / optimized / DLL files
